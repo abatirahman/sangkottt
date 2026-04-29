@@ -1,0 +1,1615 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <title>sangkottt.</title>
+    <style>
+      :root {
+        --bg: #fdf6ee;
+        --bg2: #fff9f2;
+        --dark-bg: #3b2f22;
+        --darker-bg: #2a2018;
+        --primary: #c8874a;
+        --primary-light: #e8a96a;
+        --gold: #d4a843;
+        --rose: #c97b72;
+        --sage: #7aaa8a;
+        --text: #3b2f22;
+        --text-mid: #7a6350;
+        --text-soft: #a89278;
+        --card-bg: #fff5eb;
+        --shadow: 0 8px 32px rgba(59, 47, 34, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 64px;
+      }
+      body {
+        background: var(--bg);
+        font-family: "Nunito", sans-serif;
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        background: var(--darker-bg) !important;
+        border-bottom: 2px solid var(--primary);
+        padding: 12px 0;
+      }
+      .navbar-brand {
+        font-family: "Lora", serif;
+        font-size: 1.45rem;
+        color: var(--gold) !important;
+        letter-spacing: 1px;
+      }
+      .navbar-brand span {
+        color: var(--primary);
+      }
+      .nav-link {
+        color: rgba(255, 255, 255, 0.82) !important;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        padding-bottom: 4px !important;
+        position: relative;
+        transition: color 0.3s;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--primary-light);
+        transition:
+          width 0.3s,
+          left 0.3s;
+      }
+      .nav-link:hover {
+        color: var(--gold) !important;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+        left: 0;
+      }
+
+      /* BANNER */
+      .banner-wrap {
+        position: relative;
+        overflow: hidden;
+        height: 100vh;
+      }
+      .banner-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(42%) saturate(0.75);
+      }
+      .banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(42, 32, 24, 0.2) 0%, rgba(42, 32, 24, 0.65) 100%);
+      }
+      .banner-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 90%;
+      }
+      .banner-text h1 {
+        font-family: "Lora", serif;
+        font-size: clamp(3.2rem, 9vw, 7rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.5);
+      }
+      .banner-text h1 span {
+        color: var(--primary-light);
+      }
+      .banner-text p {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        margin-top: 16px;
+        letter-spacing: 1px;
+        font-weight: 300;
+      }
+      .banner-btn {
+        display: inline-block;
+        margin-top: 28px;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 2px;
+        padding: 12px 32px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition:
+          background 0.3s,
+          transform 0.2s,
+          border 0.2s;
+        border: 2px solid transparent;
+      }
+      .banner-btn:hover {
+        background: transparent;
+        border-color: #fff;
+        color: #fff;
+        transform: scale(1.04);
+      }
+
+      /* SECTION LABELS */
+      .sec-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: var(--primary);
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .sec-title {
+        font-family: "Lora", serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.2;
+        margin-bottom: 10px;
+      }
+      .sec-title.light {
+        color: #fff;
+      }
+      .sec-divider {
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--gold));
+        border-radius: 2px;
+        margin: 12px auto 0;
+      }
+
+      /* PROFIL */
+      .profil-section {
+        background: var(--bg2);
+        padding: 90px 0;
+      }
+      .profil-img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 8px 8px 0 var(--primary);
+        transition: transform 0.4s;
+      }
+      .profil-img:hover {
+        transform: translate(-4px, -4px);
+      }
+      .profil-tag {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--darker-bg);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        padding: 5px 14px;
+        border-radius: 50px;
+        margin-bottom: 16px;
+      }
+      .profil-text h3 {
+        font-family: "Lora", serif;
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 14px;
+        line-height: 1.25;
+      }
+      .profil-text p {
+        color: var(--text-mid);
+        font-size: 1.05rem;
+        line-height: 1.8;
+        margin-bottom: 14px;
+      }
+      /* ── MUSIC PLAYER ────────────────────────────── */
+      .music-player {
+        margin-top: 28px;
+        background: linear-gradient(145deg, #2a2018, #3b2f22);
+        border: 1px solid rgba(212, 168, 67, 0.25);
+        border-radius: 20px;
+        padding: 20px 22px;
+        box-shadow: 0 8px 32px rgba(59, 47, 34, 0.35);
+        position: relative;
+        overflow: hidden;
+      }
+      .music-player::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 140px;
+        height: 140px;
+        background: radial-gradient(circle, rgba(200, 135, 74, 0.1) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .music-note-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(212, 168, 67, 0.14);
+        border: 1px solid rgba(212, 168, 67, 0.28);
+        color: var(--gold);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 50px;
+        margin-bottom: 16px;
+      }
+      .music-player-top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+      /* Vinyl disc */
+      .music-disc {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, #c8874a 0%, #d4a843 25%, #3b2f22 50%, #c8874a 75%, #d4a843 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+        box-shadow:
+          0 0 0 3px rgba(200, 135, 74, 0.18),
+          0 4px 16px rgba(0, 0, 0, 0.4);
+        transition: box-shadow 0.4s;
+      }
+      .music-disc.spinning {
+        animation: discSpin 3s linear infinite;
+        box-shadow:
+          0 0 0 3px rgba(200, 135, 74, 0.5),
+          0 0 20px rgba(212, 168, 67, 0.25);
+      }
+      @keyframes discSpin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .music-disc-inner {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #1e1610;
+        border: 2px solid rgba(212, 168, 67, 0.4);
+      }
+      /* Track info */
+      .music-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .music-title {
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.3;
+      }
+      .music-artist {
+        color: rgba(255, 255, 255, 0.42);
+        font-size: 0.78rem;
+        margin-top: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      /* Controls */
+      .music-controls {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .ctrl-btn {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        color: rgba(255, 255, 255, 0.65);
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          transform 0.15s;
+        font-family: "Nunito", sans-serif;
+        line-height: 1;
+      }
+      .ctrl-btn:hover {
+        background: rgba(200, 135, 74, 0.22);
+        color: var(--primary-light);
+        transform: scale(1.08);
+      }
+      .ctrl-btn.play-pause {
+        width: 42px;
+        height: 42px;
+        font-size: 1.15rem;
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(200, 135, 74, 0.35);
+      }
+      .ctrl-btn.play-pause:hover {
+        background: var(--primary-light);
+        border-color: var(--primary-light);
+        color: #fff;
+        transform: scale(1.08);
+      }
+      /* Progress */
+      .music-progress-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .music-time {
+        color: rgba(255, 255, 255, 0.35);
+        font-size: 0.7rem;
+        font-weight: 600;
+        min-width: 32px;
+        font-family: monospace;
+        letter-spacing: 0.5px;
+      }
+      .progress-bar-wrap {
+        flex: 1;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.09);
+        border-radius: 99px;
+        cursor: pointer;
+        position: relative;
+        transition: height 0.15s;
+      }
+      .progress-bar-wrap:hover {
+        height: 6px;
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--gold));
+        border-radius: 99px;
+        width: 0%;
+        transition: width 0.2s linear;
+      }
+      /* Playlist */
+      .music-playlist {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        padding-top: 14px;
+      }
+      .playlist-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        user-select: none;
+      }
+      .playlist-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.82);
+      }
+      .playlist-item.active {
+        background: rgba(200, 135, 74, 0.16);
+        color: var(--primary-light);
+      }
+      .playlist-item .track-num {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.22);
+        min-width: 16px;
+        text-align: center;
+        font-family: monospace;
+      }
+      .playlist-item.active .track-num {
+        color: var(--gold);
+      }
+      .playlist-item i {
+        font-size: 0.85rem;
+        opacity: 0.45;
+        flex-shrink: 0;
+      }
+      .playlist-item.active i {
+        opacity: 1;
+        color: var(--gold);
+        animation: notePulse 1.4s ease-in-out infinite;
+      }
+      @keyframes notePulse {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.15);
+        }
+      }
+      /* ── END MUSIC PLAYER ─────────────────────────── */
+
+      /* STATS */
+      .stats-bar {
+        background: var(--dark-bg);
+        padding: 44px 0;
+      }
+      .stat-num {
+        font-family: "Lora", serif;
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .stat-label {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+      .stat-item {
+        text-align: center;
+        padding: 8px 20px;
+      }
+
+      /* GALERI */
+      .galeri-section {
+        padding: 90px 0;
+        background: var(--bg);
+      }
+
+      .upload-zone {
+        border: 2.5px dashed var(--primary);
+        border-radius: 16px;
+        padding: 36px 20px;
+        text-align: center;
+        background: var(--card-bg);
+        transition:
+          background 0.3s,
+          border-color 0.3s;
+      }
+      .upload-zone.dragover {
+        background: #ffeedd;
+        border-color: var(--gold);
+      }
+      .upload-zone input[type="file"] {
+        display: none;
+      }
+      #dropArea {
+        cursor: pointer;
+      }
+      #dropArea:hover .upload-icon {
+        color: var(--gold);
+      }
+      .upload-icon {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+      .upload-text {
+        color: var(--text-mid);
+        font-size: 0.95rem;
+      }
+      .upload-text strong {
+        color: var(--primary);
+      }
+      .upload-preview {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+        justify-content: center;
+      }
+      .upload-preview img {
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid var(--primary);
+      }
+      .upload-btn {
+        margin-top: 14px;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-weight: 700;
+        font-size: 0.88rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition:
+          background 0.3s,
+          transform 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Nunito", sans-serif;
+      }
+      .upload-btn:hover {
+        background: var(--primary-light);
+        transform: scale(1.03);
+      }
+      .upload-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .gallery-grid {
+        display: grid;
+        gap: 12px;
+      }
+      @media (min-width: 576px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 768px) {
+        .gallery-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (min-width: 992px) {
+        .gallery-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px;
+        aspect-ratio: 1/1;
+        background: #ecdcc8;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition:
+          transform 0.4s,
+          filter 0.4s;
+        display: block;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.07);
+        filter: brightness(68%);
+      }
+      .gallery-item-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+        gap: 12px;
+      }
+      .gallery-item:hover .gallery-item-overlay {
+        opacity: 1;
+      }
+      .gallery-action-btn {
+        background: rgba(255, 255, 255, 0.92);
+        border: none;
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1rem;
+        color: var(--text);
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .gallery-action-btn:hover {
+        background: #fff;
+        transform: scale(1.1);
+      }
+      .gallery-action-btn.del {
+        color: var(--rose);
+      }
+
+      .gallery-empty {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--text-soft);
+        grid-column: 1/-1;
+      }
+      .gallery-empty i {
+        font-size: 3rem;
+        margin-bottom: 12px;
+        opacity: 0.4;
+        display: block;
+      }
+
+      .setup-banner {
+        background: linear-gradient(135deg, #fff3e8, #fde8d4);
+        border: 2px solid var(--primary);
+        border-radius: 14px;
+        padding: 18px 22px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .setup-banner i {
+        color: var(--primary);
+        font-size: 1.4rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .setup-banner p {
+        margin: 0;
+        color: var(--text-mid);
+        font-size: 0.9rem;
+        line-height: 1.65;
+      }
+      .setup-banner code {
+        background: rgba(200, 135, 74, 0.15);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: var(--primary);
+        font-size: 0.85rem;
+      }
+
+      /* LIGHTBOX */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(30, 20, 12, 0.93);
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.active {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: 90vw;
+        max-height: 88vh;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        object-fit: contain;
+      }
+      .lb-close {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        line-height: 1;
+      }
+      .lb-close:hover {
+        opacity: 1;
+      }
+      .lb-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: none;
+        font-size: 1.8rem;
+        padding: 8px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .lb-nav:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .lb-prev {
+        left: 16px;
+      }
+      .lb-next {
+        right: 16px;
+      }
+
+      /* TOAST */
+      .toast-wrap {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 9998;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .toast-msg {
+        background: var(--dark-bg);
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        border-left: 4px solid var(--primary);
+        box-shadow: var(--shadow);
+        animation: slideIn 0.3s ease;
+      }
+      .toast-msg.success {
+        border-left-color: var(--sage);
+      }
+      .toast-msg.error {
+        border-left-color: var(--rose);
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .spinner-gallery {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border: 3px solid rgba(200, 135, 74, 0.25);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: auto;
+      }
+
+      /* KONTAK */
+      .kontak-section {
+        background: var(--dark-bg);
+        padding: 90px 0;
+      }
+      .kontak-section .sec-label {
+        color: var(--gold);
+      }
+      .kontak-section .text-muted {
+        color: rgba(255, 255, 255, 0.45) !important;
+      }
+
+      .ig-card {
+        background: linear-gradient(160deg, #2e2015, #3d2a19);
+        border: 1px solid rgba(212, 168, 67, 0.18);
+        border-radius: 18px;
+        overflow: hidden;
+        transition:
+          transform 0.35s,
+          box-shadow 0.35s;
+      }
+      .ig-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(200, 135, 74, 0.22);
+      }
+      .ig-card-header {
+        background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .ig-avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.75);
+        overflow: hidden;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.3rem;
+      }
+      .ig-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ig-name {
+        font-weight: 700;
+        color: #fff;
+        font-size: 0.95rem;
+        line-height: 1.2;
+      }
+      .ig-handle {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.78rem;
+      }
+      .ig-card-body {
+        padding: 16px 20px 20px;
+      }
+      .ig-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 11px;
+        background: linear-gradient(135deg, #f09433, #dc2743, #bc1888);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.85rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition:
+          opacity 0.3s,
+          transform 0.2s;
+        font-family: "Nunito", sans-serif;
+      }
+      .ig-btn:hover {
+        opacity: 0.85;
+        transform: scale(1.02);
+        color: #fff;
+      }
+
+      /* FOOTER */
+      .footer {
+        background: var(--darker-bg);
+        padding: 26px 0;
+        text-align: center;
+        border-top: 2px solid var(--primary);
+      }
+      .footer p {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        margin: 0;
+      }
+      .footer span {
+        color: var(--primary-light);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">sangkottt<span>.</span></a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto gap-2">
+            <li class="nav-item"><a class="nav-link" href="#profil">PROFIL</a></li>
+            <li class="nav-item"><a class="nav-link" href="#galeri">GALERI</a></li>
+            <li class="nav-item"><a class="nav-link" href="#kontak">KONTAK</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- BANNER -->
+    <div class="banner-wrap">
+      <img src="img/banner.jpeg" alt="banner" />
+      <div class="banner-overlay"></div>
+      <div class="banner-text">
+        <h1>sang<span>kott</span>t</h1>
+        <p>cerita kecil dari polbeng.</p>
+        <a href="#profil" class="banner-btn">Kenali Kita ↓</a>
+      </div>
+    </div>
+
+    <!-- PROFIL -->
+    <section class="profil-section" id="profil">
+      <div class="container">
+        <div class="text-center mb-5">
+          <p class="sec-label">Who We Are</p>
+          <h2 class="sec-title">Tentang Kita</h2>
+          <p style="color: var(--text-soft); margin-top: 8px">Dari sekadar maba sampai jadi saudara.</p>
+          <div class="sec-divider"></div>
+        </div>
+        <div class="row align-items-center g-5">
+          <div class="col-md-6">
+            <img src="img/banner1.jpeg" class="profil-img" alt="foto bareng" />
+          </div>
+          <div class="col-md-6 profil-text">
+            <span class="profil-tag">EST. 2025</span>
+            <h3>Darimana Semua Dimulai?</h3>
+            <p>
+              Dari sekadar maba yang belum saling kenal, sampai akhirnya jadi rekan berbagi cerita paling jujur. Pertemanan kami tumbuh secara organik di sela-sela jadwal kuliah yang padat, membuktikan bahwa kenyamanan itu tidak perlu
+              tempat mewah bangku sekolah dan orang-orang yang tepat.
+            </p>
+            <p>Di sini, Sangkottt adalah identitas. Tempat di mana kami bisa menjadi diri sendiri tanpa penghakiman. Karena pada akhirnya, yang akan selalu diingat bukan hanya tugas kuliahnya, tapi dengan siapa kita tertawa.</p>
+
+            <!-- musik -->
+            <div class="music-player" id="musicPlayer">
+              <div class="music-note-badge"><i class="bi bi-music-note-beamed"></i> Playlist Kita</div>
+              <div class="music-player-top">
+                <div class="music-disc" id="musicDisc">
+                  <div class="music-disc-inner"></div>
+                </div>
+                <div class="music-info">
+                  <div class="music-title" id="trackTitle">putar musiknya guyss!</div>
+                  <div class="music-artist" id="trackArtist">— sangkottt playlist</div>
+                </div>
+                <div class="music-controls">
+                  <button class="ctrl-btn" id="prevBtn" title="Sebelumnya"><i class="bi bi-skip-start-fill"></i></button>
+                  <button class="ctrl-btn play-pause" id="playPauseBtn" title="Play/Pause"><i class="bi bi-play-fill"></i></button>
+                  <button class="ctrl-btn" id="nextBtn" title="Berikutnya"><i class="bi bi-skip-end-fill"></i></button>
+                </div>
+              </div>
+
+              <div class="music-progress-wrap">
+                <span class="music-time" id="currentTime">0:00</span>
+                <div class="progress-bar-wrap" id="progressBarWrap">
+                  <div class="progress-bar-fill" id="progressFill"></div>
+                </div>
+                <span class="music-time" id="totalTime">0:00</span>
+              </div>
+
+              <div class="music-playlist" id="playlist">
+                <div class="playlist-item" data-index="1" data-src="music/Dan.mp3" data-title="Dan" data-artist="Sheila On 7">
+                  <span class="track-num">1</span>
+                  <i class="bi bi-music-note"></i>
+                  <span>Dan</span>
+                </div>
+                <div class="playlist-item" data-index="2" data-src="music/Cincin.mp3" data-title="cincin" data-artist="Hindia">
+                  <span class="track-num">2</span>
+                  <i class="bi bi-music-note"></i>
+                  <span>Cincin</span>
+                </div>
+                <div class="playlist-item" data-index="3" data-src="music/Nina.mp3" data-title="Nina" data-artist=".Feast">
+                  <span class="track-num">3</span>
+                  <i class="bi bi-music-note"></i>
+                  <span>Nina</span>
+                </div>
+              </div>
+            </div>
+            <!-- akhir musik -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-6 col-md-3 stat-item">
+            <div class="stat-num">2026</div>
+            <div class="stat-label">Berdiri Sejak</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item">
+            <div class="stat-num">11</div>
+            <div class="stat-label">Anggota</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Kenangan</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Keluarga</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALERI -->
+    <section class="galeri-section" id="galeri">
+      <div class="container">
+        <div class="text-center mb-5">
+          <p class="sec-label">Momen Kita</p>
+          <h2 class="sec-title">Galeri</h2>
+          <div class="sec-divider"></div>
+        </div>
+
+        <div class="setup-banner" id="setupBanner">
+          <i class="bi bi-info-circle-fill"></i>
+          <p>
+            <strong>Setup Supabase dulu!</strong> Buka file ini, cari <code>SUPABASE_URL</code> dan <code>SUPABASE_KEY</code> di bagian script paling bawah, isi dengan kredensial kamu. Lihat panduan di file
+            <strong>CARA_SETUP.md</strong> yang disertakan.
+          </p>
+        </div>
+
+        <!-- Input file tersembunyi, dipanggil oleh JS -->
+        <input type="file" id="fileInput" accept="image/*" multiple style="display: none" />
+
+        <div class="upload-zone mb-4" id="uploadZone">
+          <!-- Area klik & drag — TERPISAH dari tombol upload -->
+          <div id="dropArea">
+            <div class="upload-icon"><i class="bi bi-cloud-arrow-up"></i></div>
+            <div class="upload-text"><strong>Klik di sini atau seret foto ke kotak ini</strong><br /><span style="font-size: 0.82rem">JPG, PNG, WEBP — maks 10MB per foto</span></div>
+          </div>
+          <div class="upload-preview" id="uploadPreview"></div>
+          <!-- Tombol ini hanya upload, tidak membuka file picker -->
+          <button class="upload-btn" id="uploadBtn" disabled><i class="bi bi-upload"></i> Upload ke Galeri</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <div class="gallery-empty">
+            <i class="bi bi-images"></i>
+            <p>Belum ada foto. Yuk upload momen pertama!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section class="kontak-section" id="kontak">
+      <div class="container">
+        <div class="text-center mb-5">
+          <p class="sec-label">Find Us</p>
+          <h2 class="sec-title" style="color: #fff">Kontak</h2>
+          <p class="text-muted">Follow masing-masing dari kita yuk!</p>
+          <div class="sec-divider"></div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/kiki.jpeg" alt="kiki" /></div>
+                <div>
+                  <div class="ig-name">Kiki</div>
+                  <div class="ig-handle">@triannisarizki</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/triannisarizki/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/dea3.jpeg" alt="Dea" /></div>
+                <div>
+                  <div class="ig-name">Dea</div>
+                  <div class="ig-handle">@deaftikaa</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/deaftikaa/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/lidia.jpeg" alt="lidia" /></div>
+                <div>
+                  <div class="ig-name">Lidia</div>
+                  <div class="ig-handle">@lidia_vntn</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/lidia_vntn/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/dinda.jpeg" alt="dinda" /></div>
+                <div>
+                  <div class="ig-name">Dinda</div>
+                  <div class="ig-handle">@adindoremifasol</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/adindoremifasol/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/ulfa.jpeg" alt="ulfa" /></div>
+                <div>
+                  <div class="ig-name">Ulfa</div>
+                  <div class="ig-handle">@ulfanurwaridaa_</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/ulfanurwaridaa_/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/alin.jpeg" alt="Alin" /></div>
+                <div>
+                  <div class="ig-name">Alin</div>
+                  <div class="ig-handle">@alinaa168110</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/alinaa168110/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/akmal.jpg" alt="akmal" /></div>
+                <div>
+                  <div class="ig-name">Akmal</div>
+                  <div class="ig-handle">@akmall.0506</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/akmall.0506/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/desfry.jpeg" alt="desfry" /></div>
+                <div>
+                  <div class="ig-name">Desfry</div>
+                  <div class="ig-handle">@defwnsyh</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/defwnsyh/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/fahmy.jpeg" alt="Fahmy" /></div>
+                <div>
+                  <div class="ig-name">Fahmy</div>
+                  <div class="ig-handle">@abatirahman</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/abatirahman/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/yoopi.jpeg" alt="Yopi" /></div>
+                <div>
+                  <div class="ig-name">Yopi</div>
+                  <div class="ig-handle">@mhmmad_yopy</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/mhmmad_yopy/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="ig-card">
+              <div class="ig-card-header">
+                <div class="ig-avatar"><img src="img/naila.jpeg" alt="naila" /></div>
+                <div>
+                  <div class="ig-name">Naila</div>
+                  <div class="ig-handle">@phoneworks2ways_yk</div>
+                </div>
+                <i class="bi bi-instagram ms-auto fs-4" style="color: white; opacity: 0.85"></i>
+              </div>
+              <div class="ig-card-body">
+                <a href="https://www.instagram.com/phoneworks2ways_yk/" target="_blank" class="ig-btn"><i class="bi bi-instagram"></i> Follow</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© 2026 <span>sangkottt</span> — cerita kecil dari polbeng. <span>♥</span></p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+      <button class="lb-close" id="lbClose"><i class="bi bi-x-lg"></i></button>
+      <button class="lb-nav lb-prev" id="lbPrev"><i class="bi bi-chevron-left"></i></button>
+      <img id="lbImg" src="" alt="" />
+      <button class="lb-nav lb-next" id="lbNext"><i class="bi bi-chevron-right"></i></button>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-wrap" id="toastWrap"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      // ╔══════════════════════════════════════════════════╗
+      // ║  ISI DUA VARIABEL INI DENGAN DATA SUPABASE KAMU ║
+      // ╚══════════════════════════════════════════════════╝
+      const SUPABASE_URL = "https://cthyyftfyylzfkjvizdc.supabase.co";
+      const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0aHl5ZnRmeXlsemZranZpemRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczOTI2ODYsImV4cCI6MjA5Mjk2ODY4Nn0.QMsdxYnPE8vQAuB7y8M9qZ1rtvsJ0iy0rjxIIEVDDcw";
+      const BUCKET = "galeri";
+      const TABLE = "photos";
+
+      // ── Setup check ──────────────────────────────────
+      const ready = !SUPABASE_URL.includes("ISI_") && !SUPABASE_KEY.includes("ISI_");
+      const sb = ready ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+      if (ready) document.getElementById("setupBanner").style.display = "none";
+
+      // ── State ─────────────────────────────────────────
+      let files = [];
+      let photos = [];
+      let lbIdx = 0;
+
+      // ── Toast ─────────────────────────────────────────
+      function toast(msg, type = "info") {
+        const w = document.getElementById("toastWrap");
+        const d = document.createElement("div");
+        d.className = `toast-msg ${type}`;
+        d.textContent = msg;
+        w.appendChild(d);
+        setTimeout(() => d.remove(), 3500);
+      }
+
+      // ── File input ────────────────────────────────────
+      const fileInput = document.getElementById("fileInput");
+      const uploadBtn = document.getElementById("uploadBtn");
+      const prevWrap = document.getElementById("uploadPreview");
+      const uploadZone = document.getElementById("uploadZone");
+      const dropArea = document.getElementById("dropArea");
+
+      function updatePreview(list) {
+        files = list;
+        prevWrap.innerHTML = "";
+        files.forEach((f) => {
+          const img = document.createElement("img");
+          img.src = URL.createObjectURL(f);
+          prevWrap.appendChild(img);
+        });
+        uploadBtn.disabled = files.length === 0;
+      }
+
+      // Klik area drop → buka file picker
+      dropArea.addEventListener("click", () => fileInput.click());
+
+      // File picker berubah → update preview
+      fileInput.addEventListener("change", () => updatePreview(Array.from(fileInput.files)));
+
+      // Drag & drop ke upload zone
+      uploadZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        uploadZone.classList.add("dragover");
+      });
+      uploadZone.addEventListener("dragleave", () => uploadZone.classList.remove("dragover"));
+      uploadZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        uploadZone.classList.remove("dragover");
+        updatePreview(Array.from(e.dataTransfer.files).filter((f) => f.type.startsWith("image/")));
+      });
+
+      // ── Upload ────────────────────────────────────────
+      uploadBtn.addEventListener("click", async (e) => {
+        e.stopPropagation(); // pastikan tidak bubble ke zone
+        if (!ready) {
+          toast("Isi SUPABASE_URL & SUPABASE_KEY dulu!", "error");
+          return;
+        }
+        if (!files.length) return;
+
+        uploadBtn.disabled = true;
+        uploadBtn.innerHTML = '<span class="spinner"></span> Mengupload...';
+
+        let ok = 0;
+        for (const f of files) {
+          try {
+            const ext = f.name.split(".").pop();
+            const path = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+
+            const { error: e1 } = await sb.storage.from(BUCKET).upload(path, f, { cacheControl: "3600", upsert: false });
+            if (e1) throw e1;
+
+            const { data: urlData } = sb.storage.from(BUCKET).getPublicUrl(path);
+
+            const { error: e2 } = await sb.from(TABLE).insert({ url: urlData.publicUrl, path, created_at: new Date().toISOString() });
+            if (e2) throw e2;
+            ok++;
+          } catch (err) {
+            console.error(err);
+            toast(`Gagal: ${f.name}`, "error");
+          }
+        }
+
+        if (ok > 0) toast(`${ok} foto berhasil diupload! 🎉`, "success");
+        files = [];
+        prevWrap.innerHTML = "";
+        fileInput.value = "";
+        uploadBtn.disabled = true;
+        uploadBtn.innerHTML = '<i class="bi bi-upload"></i> Upload ke Galeri';
+        loadGallery();
+      });
+
+      // ── Load Gallery ──────────────────────────────────
+      async function loadGallery() {
+        const grid = document.getElementById("galleryGrid");
+
+        if (!ready) {
+          grid.innerHTML = `<div class="gallery-empty"><i class="bi bi-images"></i><p>Setup Supabase untuk mulai upload foto.</p></div>`;
+          return;
+        }
+
+        grid.innerHTML = `<div class="gallery-empty"><div class="spinner-gallery"></div></div>`;
+
+        try {
+          const { data, error } = await sb.from(TABLE).select("*").order("created_at", { ascending: false });
+          if (error) throw error;
+          photos = data || [];
+
+          if (!photos.length) {
+            grid.innerHTML = `<div class="gallery-empty"><i class="bi bi-images"></i><p>Belum ada foto. Yuk upload momen pertama!</p></div>`;
+            return;
+          }
+
+          grid.innerHTML = photos
+            .map(
+              (p, i) => `
+            <div class="gallery-item">
+              <img src="${p.url}" alt="foto ${i + 1}" loading="lazy" />
+              <div class="gallery-item-overlay">
+                <button class="gallery-action-btn" onclick="openLb(${i})" title="Lihat"><i class="bi bi-arrows-fullscreen"></i></button>
+                <button class="gallery-action-btn" onclick="downloadPhoto('${p.url}','${p.path}')" title="Download"><i class="bi bi-download"></i></button>
+                <button class="gallery-action-btn del" onclick="delPhoto('${p.id}','${p.path}')" title="Hapus"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+          `,
+            )
+            .join("");
+        } catch (err) {
+          console.error(err);
+          grid.innerHTML = `<div class="gallery-empty"><i class="bi bi-exclamation-circle"></i><p>Gagal memuat galeri. Cek setup Supabase.</p></div>`;
+        }
+      }
+
+      // ── Delete ────────────────────────────────────────
+      async function delPhoto(id, path) {
+        if (!confirm("Hapus foto ini?")) return;
+        try {
+          await sb.storage.from(BUCKET).remove([path]);
+          await sb.from(TABLE).delete().eq("id", id);
+          toast("Foto dihapus.", "success");
+          loadGallery();
+        } catch {
+          toast("Gagal menghapus foto.", "error");
+        }
+      }
+
+      // ── Download ──────────────────────────────────────
+      async function downloadPhoto(url, path) {
+        try {
+          toast("Menyiapkan download...", "info");
+          const res = await fetch(url);
+          const blob = await res.blob();
+          const ext = path.split(".").pop() || "jpg";
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = `sangkottt_${Date.now()}.${ext}`;
+          a.click();
+          URL.revokeObjectURL(a.href);
+          toast("Foto berhasil disimpan! 📸", "success");
+        } catch {
+          toast("Gagal download foto.", "error");
+        }
+      }
+
+      // ── Lightbox ──────────────────────────────────────
+      function openLb(i) {
+        lbIdx = i;
+        document.getElementById("lbImg").src = photos[i].url;
+        document.getElementById("lightbox").classList.add("active");
+      }
+      document.getElementById("lbClose").onclick = () => document.getElementById("lightbox").classList.remove("active");
+      document.getElementById("lbPrev").onclick = () => openLb((lbIdx - 1 + photos.length) % photos.length);
+      document.getElementById("lbNext").onclick = () => openLb((lbIdx + 1) % photos.length);
+      document.getElementById("lightbox").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) e.currentTarget.classList.remove("active");
+      });
+      document.addEventListener("keydown", (e) => {
+        const lb = document.getElementById("lightbox");
+        if (!lb.classList.contains("active")) return;
+        if (e.key === "Escape") lb.classList.remove("active");
+        if (e.key === "ArrowLeft") openLb((lbIdx - 1 + photos.length) % photos.length);
+        if (e.key === "ArrowRight") openLb((lbIdx + 1) % photos.length);
+      });
+
+      loadGallery();
+    </script>
+    //music
+    <script>
+      // ── MUSIC PLAYER ──────────────────────────────────────
+      const tracks = [];
+      document.querySelectorAll(".playlist-item").forEach((item) => {
+        tracks.push({
+          src: item.dataset.src,
+          title: item.dataset.title,
+          artist: item.dataset.artist,
+          el: item,
+        });
+      });
+
+      let currentIdx = 0;
+      let isPlaying = false;
+      const audio = new Audio();
+
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const trackTitle = document.getElementById("trackTitle");
+      const trackArtist = document.getElementById("trackArtist");
+      const musicDisc = document.getElementById("musicDisc");
+      const progressFill = document.getElementById("progressFill");
+      const progressBarWrap = document.getElementById("progressBarWrap");
+      const currentTimeEl = document.getElementById("currentTime");
+      const totalTimeEl = document.getElementById("totalTime");
+
+      function formatTime(sec) {
+        if (isNaN(sec)) return "0:00";
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${m}:${s.toString().padStart(2, "0")}`;
+      }
+
+      function loadTrack(idx) {
+        const t = tracks[idx];
+        audio.src = t.src;
+        trackTitle.textContent = t.title;
+        trackArtist.textContent = "— " + t.artist;
+        progressFill.style.width = "0%";
+        currentTimeEl.textContent = "0:00";
+        totalTimeEl.textContent = "0:00";
+
+        document.querySelectorAll(".playlist-item").forEach((el, i) => {
+          el.classList.toggle("active", i === idx);
+        });
+      }
+
+      function playTrack() {
+        audio.play();
+        isPlaying = true;
+        playPauseBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+        musicDisc.classList.add("spinning");
+      }
+
+      function pauseTrack() {
+        audio.pause();
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+        musicDisc.classList.remove("spinning");
+      }
+
+      playPauseBtn.addEventListener("click", () => {
+        if (audio.src === "" || !audio.src.includes("music/")) {
+          loadTrack(currentIdx);
+          playTrack();
+        } else if (isPlaying) {
+          pauseTrack();
+        } else {
+          playTrack();
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
+        currentIdx = (currentIdx - 1 + tracks.length) % tracks.length;
+        loadTrack(currentIdx);
+        if (isPlaying) playTrack();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        currentIdx = (currentIdx + 1) % tracks.length;
+        loadTrack(currentIdx);
+        if (isPlaying) playTrack();
+      });
+
+      audio.addEventListener("timeupdate", () => {
+        if (!audio.duration) return;
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = pct + "%";
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+      });
+
+      audio.addEventListener("loadedmetadata", () => {
+        totalTimeEl.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener("ended", () => {
+        currentIdx = (currentIdx + 1) % tracks.length;
+        loadTrack(currentIdx);
+        playTrack();
+      });
+
+      progressBarWrap.addEventListener("click", (e) => {
+        const rect = progressBarWrap.getBoundingClientRect();
+        const ratio = (e.clientX - rect.left) / rect.width;
+        audio.currentTime = ratio * audio.duration;
+      });
+
+      document.querySelectorAll(".playlist-item").forEach((el, i) => {
+        el.addEventListener("click", () => {
+          currentIdx = i;
+          loadTrack(currentIdx);
+          playTrack();
+        });
+      });
+
+      loadTrack(0);
+    </script>
+  </body>
+</html>
